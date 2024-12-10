@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Landing Page</title>
+    <style>
+      :root {
+        /* Primary Colors */
+        --color-creme: #f4ebe2;
+        --color-light-creme: #f8f7f4;
+        --color-white: #ffffff;
+        --color-black: #363b48;
+
+        /* Secondary Colors */
+        --color-dark-blue: #363b48;
+        --color-medium-blue: #75809c;
+        --color-light-blue: #b4c4e4;
+
+        /* Tertiary Colors */
+        --color-dark-creme: #cec3b2;
+        --color-blue: #324bf9;
+        --color-green: #42ad9e;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      /* Navigation Styles */
+      .navbar {
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--color-white);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .logo {
+        height: 40px;
+      }
+
+      .nav-links {
+        display: none;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin: 0 1.5rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--color-black);
+      }
+
+      .hamburger {
+        display: block;
+        cursor: pointer;
+      }
+
+      .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: var(--color-black);
+        margin: 5px;
+        transition: all 0.3s ease;
+      }
+
+      /* Hero Section Styles */
+      .hero {
+        padding: 6rem 1rem 2rem;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .hero-content {
+        max-width: 600px;
+        margin-right: auto;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 2rem;
+      }
+
+      .hero h3 {
+        color: var(--color-medium-blue);
+        margin-bottom: 1rem;
+      }
+
+      .hero h1 {
+        color: var(--color-black);
+        margin-bottom: 1.5rem;
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        color: var(--color-black);
+        margin-bottom: 2rem;
+      }
+
+      .cta-container {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+      }
+
+      .cta-button {
+        padding: 0.8rem 1.5rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .cta-primary {
+        background-color: var(--color-black);
+        color: var(--color-white);
+        border: none;
+      }
+
+      .cta-primary:hover {
+        background-color: var(--color-medium-blue);
+        color: var(--color-black);
+      }
+
+      .cta-secondary {
+        background-color: transparent;
+        color: var(--color-black);
+        border: 2px solid var(--color-black);
+      }
+
+      .cta-secondary:hover {
+        background-color: var(--color-medium-blue);
+        border-color: var(--color-medium-blue);
+        color: var(--color-black);
+      }
+
+      /* Mobile Menu */
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-white);
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .mobile-menu.active {
+        display: block;
+      }
+
+      .mobile-menu li {
+        list-style: none;
+        margin: 1rem 0;
+      }
+
+      /* Tablet Styles */
+      @media (min-width: 768px) {
+        .hero {
+          padding: 8rem 2rem 4rem;
+        }
+
+        .cta-container {
+          flex-direction: row;
+        }
+
+        .hero h1 {
+          font-size: 3rem;
+        }
+      }
+
+      /* Desktop Styles */
+      @media (min-width: 1024px) {
+        .hamburger {
+          display: none;
+        }
+
+        .nav-links {
+          display: flex;
+          align-items: center;
+        }
+
+        .mobile-menu {
+          display: none !important;
+        }
+
+        .hero {
+          padding: 8rem 4rem 4rem;
+        }
+
+        .hero h1 {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <img src="logo.png" alt="Logo" class="logo" />
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact" class="cta-button cta-primary">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </nav>
+
+    <div class="mobile-menu">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact" class="cta-button cta-primary">Contact</a></li>
+      </ul>
+    </div>
+
+    <section class="hero">
+      <div class="hero-content">
+        <img src="hero-image.jpg" alt="Hero Image" class="hero-image" />
+        <h3 id="dynamicSubheading">Subheading</h3>
+        <h1 id="dynamicHeading">Main Heading</h1>
+        <p id="dynamicParagraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <div class="cta-container">
+          <a href="#" class="cta-button cta-secondary" id="ctaSecondary">Learn More</a>
+          <a href="#" class="cta-button cta-primary" id="ctaPrimary">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Hamburger Menu Toggle
+      const hamburger = document.querySelector(".hamburger");
+      const mobileMenu = document.querySelector(".mobile-menu");
+
+      hamburger.addEventListener("click", () => {
+        mobileMenu.classList.toggle("active");
+      });
+
+      // Dynamic Content Update Function
+      function updateContent(content) {
+        // Update DOM elements with the content from Google Sheets
+        document.getElementById("dynamicSubheading").textContent = content.subheading;
+        document.getElementById("dynamicHeading").textContent = content.heading;
+        document.getElementById("dynamicParagraph").textContent = content.paragraph;
+        document.getElementById("ctaSecondary").textContent = content.ctaSecondary;
+        document.getElementById("ctaPrimary").textContent = content.ctaPrimary;
+
+        // Update hero image if provided
+        const heroImage = document.querySelector(".hero-image");
+        if (heroImage && content.heroImage) {
+          heroImage.src = content.heroImage;
+        }
+      }
+
+      // Function to fetch content from Netlify function
+      async function fetchKeywords() {
+        try {
+          const keyword = new URLSearchParams(window.location.search).get("keyword") || "default";
+          const response = await fetch(`/.netlify/functions/getContent?keyword=${encodeURIComponent(keyword)}`);
+
+          if (!response.ok) {
+            throw new Error("Failed to fetch content");
+          }
+
+          const data = await response.json();
+          updateContent(data);
+        } catch (error) {
+          console.error("Error fetching content:", error);
+          // Default content if fetch fails
+          updateContent({
+            subheading: "Welcome to Our Platform",
+            heading: "Transform Your Business Today",
+            paragraph: "Discover how our solutions can help you achieve your goals.",
+            ctaSecondary: "Learn More",
+            ctaPrimary: "Get Started",
+            heroImage: "default-hero.jpg",
+          });
+        }
+      }
+
+      // Call fetchKeywords when the page loads
+      document.addEventListener("DOMContentLoaded", fetchKeywords);
+    </script>
+  </body>
+</html>
